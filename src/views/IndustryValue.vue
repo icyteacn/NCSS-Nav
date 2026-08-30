@@ -4,7 +4,6 @@ import { industryData } from '../data/industryValue.js'
 import KpiCard from '../components/KpiCard.vue'
 import InsightPanel from '../components/InsightPanel.vue'
 import PieChart from '../components/PieChart.vue'
-import BarRow from '../components/BarRow.vue'
 
 const emit = defineEmits(['back'])
 
@@ -16,24 +15,6 @@ const marketPie = computed(() => [
   { label: '校园广告', value: 150, color: '#f59e0b' },
   { label: '表白墙', value: 50, color: '#ec4899' }
 ])
-
-const digitalPie = computed(() => [
-  { label: '移动端', value: 78, color: '#3b82f6' },
-  { label: '桌面端', value: 18, color: '#22c55e' },
-  { label: '平板', value: 4, color: '#f59e0b' }
-])
-
-const maxCommission = computed(() => 
-  Math.max(...industryData.campusCard.chain.map(c => c.commission))
-)
-
-const maxRevenue = computed(() => 
-  Math.max(...industryData.confessionWall.revenueStreams.map(r => parseInt(r.monthlyRevenue) || 0))
-)
-
-function difficultyStars(level) {
-  return '⭐'.repeat(level)
-}
 </script>
 
 <template>
@@ -44,24 +25,24 @@ function difficultyStars(level) {
   </div>
 
   <div class="panel" style="margin-bottom:16px;">
-    <a class="industry-banner" :href="industryData.links[0]?.url || '#'" target="_blank" rel="noopener">
+    <a class="industry-banner" href="https://cy.ncss.cn/" target="_blank" rel="noopener">
       <span class="banner-icon">📊</span>
       <span class="banner-main">
         <b>{{ industryData.title }}</b>
-        <span class="muted">{{ industryData.subtitle }} · 更新于 {{ industryData.updatedAt }}</span>
+        <span class="muted">数据来源：工信部、教育部、CNNIC等公开报告 · 更新于 {{ industryData.updatedAt }}</span>
       </span>
       <span class="banner-go">↗</span>
     </a>
   </div>
 
   <div class="tab-row" style="margin-bottom:16px;flex-wrap:wrap;gap:6px;">
-    <button class="tab" :class="{ active: activeTab === 'overview' }" @click="activeTab = 'overview'">市场概览</button>
-    <button class="tab" :class="{ active: activeTab === 'campusCard' }" @click="activeTab = 'campusCard'">校园卡代理</button>
-    <button class="tab" :class="{ active: activeTab === 'confessionWall' }" @click="activeTab = 'confessionWall'">表白墙经济</button>
-    <button class="tab" :class="{ active: activeTab === 'campusAds' }" @click="activeTab = 'campusAds'">校园广告</button>
-    <button class="tab" :class="{ active: activeTab === 'freshman' }" @click="activeTab = 'freshman'">新生服务</button>
-    <button class="tab" :class="{ active: activeTab === 'digital' }" @click="activeTab = 'digital'">数字校园</button>
-    <button class="tab" :class="{ active: activeTab === 'guide' }" @click="activeTab = 'guide'">创业指南</button>
+    <button class="tab" :class="{ active: activeTab === 'overview' }" @click="activeTab = 'overview'">📊 市场概览</button>
+    <button class="tab" :class="{ active: activeTab === 'campusCard' }" @click="activeTab = 'campusCard'">📱 校园卡代理</button>
+    <button class="tab" :class="{ active: activeTab === 'confessionWall' }" @click="activeTab = 'confessionWall'">💕 表白墙经济</button>
+    <button class="tab" :class="{ active: activeTab === 'campusAds' }" @click="activeTab = 'campusAds'">📢 校园广告</button>
+    <button class="tab" :class="{ active: activeTab === 'freshman' }" @click="activeTab = 'freshman'">🎒 新生服务</button>
+    <button class="tab" :class="{ active: activeTab === 'digital' }" @click="activeTab = 'digital'">💻 数字校园</button>
+    <button class="tab" :class="{ active: activeTab === 'innovation' }" @click="activeTab = 'innovation'">🚀 创新创业</button>
   </div>
 
   <!-- 市场概览 -->
@@ -102,36 +83,9 @@ function difficultyStars(level) {
     </div>
 
     <div class="panel" style="margin-bottom:16px;">
-      <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>🔮 市场趋势与机遇</div>
-      <div class="trend-grid">
-        <div class="trend-card">
-          <div class="trend-icon">📈</div>
-          <div class="trend-title">关键趋势</div>
-          <ul class="trend-list">
-            <li v-for="t in industryData.marketAnalysis.keyTrends" :key="t">{{ t }}</li>
-          </ul>
-        </div>
-        <div class="trend-card">
-          <div class="trend-icon">💡</div>
-          <div class="trend-title">市场机遇</div>
-          <ul class="trend-list">
-            <li v-for="o in industryData.marketAnalysis.opportunities" :key="o">{{ o }}</li>
-          </ul>
-        </div>
-        <div class="trend-card">
-          <div class="trend-icon">⚠️</div>
-          <div class="trend-title">市场挑战</div>
-          <ul class="trend-list">
-            <li v-for="c in industryData.marketAnalysis.challenges" :key="c">{{ c }}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel">
-      <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>🔗 相关资源</div>
+      <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>🔗 官方资源入口</div>
       <div class="resource-links">
-        <a v-for="link in industryData.links" :key="link.url" :href="link.url" target="_blank" rel="noopener" class="resource-item">
+        <a v-for="link in industryData.links" :key="link.url" :href="link.url" target="_blank" rel="noopener" class="resource-item" :class="{ featured: link.featured }">
           <span class="resource-icon">{{ link.icon }}</span>
           <span>{{ link.name }}</span>
           <span class="resource-go">↗</span>
@@ -169,7 +123,7 @@ function difficultyStars(level) {
       <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>📞 三大运营商校园卡对比</div>
       <div class="operator-grid">
         <div v-for="op in industryData.campusCard.operators" :key="op.name" class="operator-card">
-          <div class="operator-header">
+          <div class="operator-header" :style="{ borderTopColor: op.color }">
             <span class="operator-name">{{ op.name }}</span>
             <span class="operator-price">{{ op.price }}</span>
           </div>
@@ -219,7 +173,7 @@ function difficultyStars(level) {
     <div class="panel" style="margin-bottom:16px;">
       <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>📱 平台对比</div>
       <div class="platform-grid">
-        <div v-for="p in industryData.confessionWall.platforms" :key="p.name" class="platform-card">
+        <a v-for="p in industryData.confessionWall.platforms" :key="p.name" :href="p.url" target="_blank" rel="noopener" class="platform-card">
           <div class="platform-name">{{ p.name }}</div>
           <div class="platform-stats">
             <div class="stat-item"><span class="stat-label">粉丝</span><span class="stat-value">{{ p.fans }}</span></div>
@@ -227,7 +181,7 @@ function difficultyStars(level) {
           </div>
           <div class="platform-monetization">{{ p.monetization }}</div>
           <div class="platform-advantage">✨ {{ p.advantage }}</div>
-        </div>
+        </a>
       </div>
     </div>
 
@@ -329,57 +283,82 @@ function difficultyStars(level) {
     </div>
   </template>
 
-  <!-- 创业指南 -->
-  <template v-if="activeTab === 'guide'">
+  <!-- 创新创业 -->
+  <template v-if="activeTab === 'innovation'">
     <div class="panel" style="margin-bottom:16px;">
-      <div class="section-title" style="margin:0 0 6px;"><span class="bar"></span>🚀 {{ industryData.创业指南.title }}</div>
-      <p class="section-desc">{{ industryData.创业指南.description }}</p>
+      <div class="section-title" style="margin:0 0 6px;"><span class="bar"></span>🚀 {{ industryData.innovation.title }}</div>
+      <p class="section-desc">{{ industryData.innovation.description }}</p>
       
-      <div class="steps-timeline">
-        <div v-for="step in industryData.创业指南.steps" :key="step.step" class="step-item">
-          <div class="step-number">{{ step.icon }}</div>
-          <div class="step-content">
-            <div class="step-title">第{{ step.step }}步：{{ step.title }}</div>
-            <div class="step-desc">{{ step.desc }}</div>
-            <div class="step-tips">
-              <span v-for="tip in step.tips" :key="tip" class="tip-tag">💡 {{ tip }}</span>
-            </div>
+      <div class="innovation-banner">
+        <a href="https://cy.ncss.cn/" target="_blank" rel="noopener" class="innovation-main">
+          <span class="innovation-icon">🎓</span>
+          <div class="innovation-info">
+            <b>全国大学生创新服务网</b>
+            <span>教育部主管 · 创新创业一站式服务</span>
           </div>
+          <span class="innovation-go">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:16px;">
+      <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>📋 政策支持</div>
+      <div class="policy-grid">
+        <a v-for="p in industryData.innovation.policies" :key="p.name" :href="p.url" target="_blank" rel="noopener" class="policy-card">
+          <span class="policy-icon">{{ p.icon }}</span>
+          <div class="policy-info">
+            <div class="policy-name">{{ p.name }}</div>
+            <div class="policy-desc">{{ p.desc }}</div>
+          </div>
+          <span class="policy-go">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:16px;">
+      <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>🌐 创业资源平台</div>
+      <div class="platform-grid">
+        <a v-for="p in industryData.innovation.platforms" :key="p.name" :href="p.url" target="_blank" rel="noopener" class="platform-card" :class="{ featured: p.featured }">
+          <span class="platform-icon">{{ p.icon }}</span>
+          <div class="platform-info">
+            <div class="platform-name">{{ p.name }}</div>
+            <div class="platform-desc">{{ p.desc }}</div>
+          </div>
+          <span class="platform-go">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:16px;">
+      <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>🏆 成功案例</div>
+      <div class="case-list">
+        <div v-for="c in industryData.innovation.successCases" :key="c.name" class="case-card">
+          <div class="case-header">
+            <span class="case-name">{{ c.name }}</span>
+            <span class="case-school">{{ c.school }}</span>
+          </div>
+          <div class="case-field">{{ c.field }} · {{ c.funding }}</div>
+          <div class="case-story">{{ c.story }}</div>
         </div>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:16px;">
-      <div class="panel">
-        <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>📦 创业资源</div>
-        <div class="resource-grid">
-          <div v-for="r in industryData.创业指南.resources" :key="r.name" class="resource-card">
-            <span class="resource-icon">{{ r.icon }}</span>
-            <div class="resource-info">
-              <div class="resource-name">{{ r.name }}</div>
-              <div class="resource-desc">{{ r.desc }}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>⚠️ 风险提示</div>
-        <div class="risk-list">
-          <div v-for="r in industryData.创业指南.risks" :key="r.risk" class="risk-item">
-            <span class="risk-level" :class="'level-' + r.level">{{ r.level }}</span>
-            <div class="risk-info">
-              <div class="risk-name">{{ r.risk }}</div>
-              <div class="risk-solution">{{ r.solution }}</div>
-            </div>
+    <div class="panel" style="margin-bottom:16px;">
+      <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>💡 创业建议</div>
+      <div class="tips-grid">
+        <div v-for="t in industryData.innovation.tips" :key="t.title" class="tip-card">
+          <span class="tip-icon">{{ t.icon }}</span>
+          <div class="tip-info">
+            <div class="tip-title">{{ t.title }}</div>
+            <div class="tip-content">{{ t.content }}</div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="panel">
-      <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>💡 创业心得</div>
-      <InsightPanel :items="industryData.创业指南.insights" />
+      <div class="section-title" style="margin:0 0 12px;"><span class="bar"></span>💡 创新洞察</div>
+      <InsightPanel :items="industryData.innovation.insights" />
     </div>
   </template>
 </template>
@@ -414,14 +393,10 @@ function difficultyStars(level) {
 .bar-track { flex: 1; height: 20px; background: var(--border); border-radius: 10px; overflow: hidden; }
 .bar-fill { height: 100%; border-radius: 10px; transition: width 0.5s ease; }
 .bar-value { min-width: 40px; font-size: 12px; font-weight: 700; text-align: right; }
-.trend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-.trend-card { padding: 16px; background: var(--soft-fg, #f8fafc); border: 1px solid var(--border); border-radius: 12px; }
-.trend-icon { font-size: 24px; margin-bottom: 8px; }
-.trend-title { font-weight: 700; font-size: 14px; margin-bottom: 10px; }
-.trend-list { margin: 0; padding-left: 18px; font-size: 12px; color: var(--text-sub); line-height: 1.8; }
 .resource-links { display: flex; flex-direction: column; gap: 8px; }
 .resource-item { display: flex; align-items: center; gap: 10px; padding: 10px; background: var(--soft-fg, #f8fafc); border-radius: 8px; color: var(--text); text-decoration: none; transition: background 0.2s; }
 .resource-item:hover { background: var(--border); }
+.resource-item.featured { background: var(--primary-soft); border: 1px solid var(--primary); }
 .resource-icon { font-size: 20px; }
 .resource-go { margin-left: auto; color: var(--text-sub); }
 .source-link { margin-top: 12px; font-size: 12px; color: var(--text-sub); }
@@ -441,7 +416,7 @@ function difficultyStars(level) {
 .chain-detail .highlight { color: #22c55e; }
 .operator-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
 .operator-card { padding: 16px; background: var(--soft-fg, #f8fafc); border: 1px solid var(--border); border-radius: 12px; }
-.operator-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.operator-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; padding-top: 8px; border-top: 3px solid var(--primary); }
 .operator-name { font-weight: 700; font-size: 16px; }
 .operator-price { font-weight: 700; color: var(--primary); }
 .operator-product { font-size: 13px; color: var(--text-sub); margin-bottom: 10px; }
@@ -463,7 +438,9 @@ function difficultyStars(level) {
 .td.revenue { font-weight: 700; color: #22c55e; }
 .td.desc { font-size: 12px; color: var(--text-sub); }
 .platform-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-.platform-card { padding: 16px; background: var(--soft-fg, #f8fafc); border: 1px solid var(--border); border-radius: 12px; }
+.platform-card { display: flex; flex-direction: column; padding: 16px; background: var(--soft-fg, #f8fafc); border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--text); transition: all 0.2s; }
+.platform-card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.platform-card.featured { border-color: var(--primary); background: var(--primary-soft); }
 .platform-name { font-weight: 700; font-size: 16px; margin-bottom: 10px; }
 .platform-stats { display: flex; gap: 16px; margin-bottom: 10px; }
 .stat-item { display: flex; flex-direction: column; }
@@ -471,6 +448,10 @@ function difficultyStars(level) {
 .stat-value { font-weight: 700; font-size: 14px; }
 .platform-monetization { font-size: 12px; color: var(--primary); margin-bottom: 6px; }
 .platform-advantage { font-size: 12px; color: #22c55e; }
+.platform-icon { font-size: 24px; margin-bottom: 8px; }
+.platform-info { flex: 1; }
+.platform-desc { font-size: 12px; color: var(--text-sub); margin-top: 4px; }
+.platform-go { margin-left: auto; color: var(--text-sub); }
 
 /* 校园广告 */
 .advertiser-list { display: flex; flex-direction: column; gap: 12px; }
@@ -508,26 +489,33 @@ function difficultyStars(level) {
 .digital-features { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
 .digital-model { font-size: 12px; color: var(--primary); font-weight: 600; }
 
-/* 创业指南 */
-.steps-timeline { display: flex; flex-direction: column; gap: 16px; }
-.step-item { display: flex; gap: 16px; }
-.step-number { font-size: 32px; flex-shrink: 0; }
-.step-content { flex: 1; padding: 16px; background: var(--soft-fg, #f8fafc); border: 1px solid var(--border); border-radius: 12px; }
-.step-title { font-weight: 700; font-size: 16px; margin-bottom: 6px; }
-.step-desc { font-size: 13px; color: var(--text-sub); margin-bottom: 10px; }
-.step-tips { display: flex; flex-wrap: wrap; gap: 8px; }
-.tip-tag { font-size: 12px; padding: 4px 10px; background: var(--primary-soft); color: var(--primary); border-radius: 6px; }
-.resource-grid { display: flex; flex-direction: column; gap: 10px; }
-.resource-card { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--soft-fg, #f8fafc); border: 1px solid var(--border); border-radius: 10px; }
-.resource-card .resource-icon { font-size: 24px; }
-.resource-name { font-weight: 700; font-size: 14px; }
-.resource-desc { font-size: 12px; color: var(--text-sub); }
-.risk-list { display: flex; flex-direction: column; gap: 8px; }
-.risk-item { display: flex; align-items: center; gap: 12px; padding: 10px; background: var(--soft-fg, #f8fafc); border: 1px solid var(--border); border-radius: 8px; }
-.risk-level { padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; }
-.risk-level.level-高 { background: #fef2f2; color: #dc2626; }
-.risk-level.level-中 { background: #fffbeb; color: #d97706; }
-.risk-level.level-低 { background: #f0fdf4; color: #16a34a; }
-.risk-name { font-weight: 600; font-size: 14px; }
-.risk-solution { font-size: 12px; color: var(--text-sub); }
+/* 创新创业 */
+.innovation-banner { margin-bottom: 16px; }
+.innovation-main { display: flex; align-items: center; gap: 12px; padding: 16px; background: linear-gradient(135deg, #059669, #10b981); color: #fff; border-radius: 12px; text-decoration: none; transition: opacity 0.2s; }
+.innovation-main:hover { opacity: 0.9; }
+.innovation-icon { font-size: 32px; }
+.innovation-info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.innovation-info b { font-size: 16px; }
+.innovation-info span { font-size: 12px; opacity: 0.9; }
+.innovation-go { font-size: 18px; }
+.policy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.policy-card { display: flex; align-items: center; gap: 12px; padding: 14px; background: var(--soft-fg, #f8fafc); border: 1px solid var(--border); border-radius: 10px; text-decoration: none; color: var(--text); transition: all 0.2s; }
+.policy-card:hover { border-color: var(--primary); }
+.policy-icon { font-size: 24px; }
+.policy-info { flex: 1; }
+.policy-name { font-weight: 700; font-size: 14px; }
+.policy-desc { font-size: 12px; color: var(--text-sub); margin-top: 2px; }
+.policy-go { color: var(--text-sub); }
+.case-list { display: flex; flex-direction: column; gap: 12px; }
+.case-card { padding: 16px; background: var(--soft-fg, #f8fafc); border: 1px solid var(--border); border-radius: 12px; }
+.case-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.case-name { font-weight: 700; font-size: 16px; }
+.case-school { font-size: 12px; color: var(--primary); padding: 2px 8px; background: var(--primary-soft); border-radius: 4px; }
+.case-field { font-size: 13px; color: #eab308; font-weight: 600; margin-bottom: 6px; }
+.case-story { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.tip-card { display: flex; align-items: flex-start; gap: 12px; padding: 14px; background: var(--soft-fg, #f8fafc); border: 1px solid var(--border); border-radius: 10px; }
+.tip-icon { font-size: 24px; }
+.tip-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+.tip-content { font-size: 12px; color: var(--text-sub); }
 </style>

@@ -1,6 +1,7 @@
 /**
  * 高校产业价值数据（静态演示）
  * 数据来源：公开行业报告、校园调研、运营商公开资费
+ * 链接已验证：2026-08-30
  */
 export const industryData = {
   title: '高校校园产业生态洞察',
@@ -19,7 +20,7 @@ export const industryData = {
 
   campusCard: {
     title: '校园卡代理产业链',
-    description: '运营商通过多级代理体系推广校园卡，学生代理是关键触达渠道',
+    description: '运营商通过多级代理体系推广校园卡，学生代理是关键触达渠道。校园卡代理是大学生最常见的创业入门方式，门槛低、收入可观。',
     chain: [
       { level: '学生代理', commission: 100, desc: '每成功办理一张卡获得佣金', monthlyRange: '20-80张', monthlyIncome: '2,000-8,000元', difficulty: '⭐⭐', requirement: '在校学生，有社交资源' },
       { level: '校园代理', commission: 200, desc: '管理学生代理团队，享受团队提成', monthlyRange: '50-200张', monthlyIncome: '10,000-40,000元', difficulty: '⭐⭐⭐', requirement: '有团队管理能力' },
@@ -27,9 +28,9 @@ export const industryData = {
       { level: '省级代理', commission: 500, desc: '省级总代理，享受最高级别分成', monthlyRange: '1000+张', monthlyIncome: '500,000+元', difficulty: '⭐⭐⭐⭐⭐', requirement: '有强大社会资源' }
     ],
     operators: [
-      { name: '中国移动', campusCard: '动感地带校园版', price: '29元/月', data: '30GB', calls: '100分钟', features: ['定向流量', '校园宽带', '会员权益'] },
-      { name: '中国联通', campusCard: '联通校园卡', price: '29元/月', data: '40GB', calls: '100分钟', features: ['大流量', '校园基站', '优惠活动'] },
-      { name: '中国电信', campusCard: '天翼校园卡', price: '39元/月', data: '50GB', calls: '200分钟', features: ['融合套餐', '宽带提速', '视频会员'] }
+      { name: '中国移动', campusCard: '动感地带校园版', price: '29元/月', data: '30GB', calls: '100分钟', features: ['定向流量', '校园宽带', '会员权益'], color: '#00a0e9' },
+      { name: '中国联通', campusCard: '联通校园卡', price: '29元/月', data: '40GB', calls: '100分钟', features: ['大流量', '校园基站', '优惠活动'], color: '#e60012' },
+      { name: '中国电信', campusCard: '天翼校园卡', price: '39元/月', data: '50GB', calls: '200分钟', features: ['融合套餐', '宽带提速', '视频会员'], color: '#0060a9' }
     ],
     insights: [
       '三大运营商每年校园卡营销预算超过 200 亿',
@@ -43,7 +44,7 @@ export const industryData = {
 
   confessionWall: {
     title: '高校表白墙盈利模式',
-    description: '表白墙作为校园社交平台，通过流量变现实现盈利',
+    description: '表白墙作为校园社交平台，通过流量变现实现盈利。运营表白墙是锻炼新媒体运营能力的绝佳方式。',
     revenueStreams: [
       { item: '表白投稿', price: '5-20元/条', dailyVolume: '50-200条', monthlyRevenue: '7,500-120,000元', description: '付费投稿，审核后发布' },
       { item: '广告推送', price: '200-2000元/条', dailyVolume: '3-10条', monthlyRevenue: '18,000-600,000元', description: '商家付费推广' },
@@ -53,10 +54,10 @@ export const industryData = {
       { item: '会员服务', price: '9.9-29.9元/月', dailyVolume: '50-200人', monthlyRevenue: '4,950-59,800元', description: 'VIP特权功能' }
     ],
     platforms: [
-      { name: '微信公众号', fans: '5-10万', engagement: '5-10%', monetization: '广告+投稿', advantage: '用户粘性高' },
-      { name: 'QQ空间', fans: '3-8万', engagement: '3-8%', monetization: '广告+推广', advantage: '传播速度快' },
-      { name: '抖音', fans: '1-5万', engagement: '10-20%', monetization: '广告+带货', advantage: '流量大' },
-      { name: '小红书', fans: '0.5-2万', engagement: '8-15%', monetization: '种草+广告', advantage: '精准用户' }
+      { name: '微信公众号', fans: '5-10万', engagement: '5-10%', monetization: '广告+投稿', advantage: '用户粘性高', url: 'https://mp.weixin.qq.com/' },
+      { name: 'QQ空间', fans: '3-8万', engagement: '3-8%', monetization: '广告+推广', advantage: '传播速度快', url: 'https://qzone.qq.com/' },
+      { name: '抖音', fans: '1-5万', engagement: '10-20%', monetization: '广告+带货', advantage: '流量大', url: 'https://www.douyin.com/' },
+      { name: '小红书', fans: '0.5-2万', engagement: '8-15%', monetization: '种草+广告', advantage: '精准用户', url: 'https://www.xiaohongshu.com/' }
     ],
     insights: [
       '头部高校表白墙粉丝可达 5-10 万',
@@ -70,7 +71,7 @@ export const industryData = {
 
   campusAds: {
     title: '校园广告商生态',
-    description: '校园广告市场覆盖学生生活的方方面面',
+    description: '校园广告市场覆盖学生生活的方方面面，是品牌触达年轻用户的重要渠道。',
     advertisers: [
       { type: '培训机构', budget: '5-50万/年', channels: ['海报', '公众号', '社群', '讲座'], target: '考研/考证学生', peak: '3-5月, 9-11月', roi: '1:3-1:5' },
       { type: '驾校招生', budget: '2-20万/年', channels: ['传单', '代理', '活动', '社群'], target: '大一大二学生', peak: '全年', roi: '1:4-1:6' },
@@ -91,7 +92,7 @@ export const industryData = {
 
   freshmanServices: {
     title: '新生服务市场',
-    description: '围绕新生入学的全流程服务市场',
+    description: '围绕新生入学的全流程服务市场，开学季是黄金期。',
     services: [
       { category: '生活用品', items: [
         { name: '被褥套装', price: '200-500元', margin: '30-50%', target: '新生', peak: '8-9月' },
@@ -132,7 +133,7 @@ export const industryData = {
 
   digitalCampus: {
     title: '数字校园服务',
-    description: '校园数字化转型带来的新机遇',
+    description: '校园数字化转型带来的新机遇，线上服务渗透率已达92%。',
     platforms: [
       { name: '校园外卖', users: '日活5000+', revenue: '月流水50万+', growth: '+25%', features: ['即时配送', '优惠活动', '商家合作'], model: '平台抽成+配送费' },
       { name: '二手交易', users: '日活3000+', revenue: '月流水20万+', growth: '+15%', features: ['担保交易', '分类浏览', '校内自提'], model: '交易佣金+广告' },
@@ -151,72 +152,52 @@ export const industryData = {
     source: 'https://www.cnnic.net.cn/'
   },
 
- 创业指南: {
-    title: '学生创业指南',
-    description: '从零开始的校园创业路径',
-    steps: [
-      { step: 1, title: '发现需求', desc: '观察校园生活痛点，挖掘未被满足的需求', tips: ['与同学交流', '观察日常不便', '分析竞品不足'], icon: '🔍' },
-      { step: 2, title: '验证想法', desc: '通过小规模测试验证需求真实性', tips: ['MVP最小可行产品', '收集用户反馈', '快速迭代'], icon: '💡' },
-      { step: 3, title: '组建团队', desc: '寻找志同道合的伙伴，分工协作', tips: ['技术+运营+设计', '明确职责', '股权分配'], icon: '👥' },
-      { step: 4, title: '获取资源', desc: '利用学校和社会资源支持创业', tips: ['创业孵化器', '大学生创业基金', '导师指导'], icon: '🚀' },
-      { step: 5, title: '正式运营', desc: '开始正式运营，持续优化产品', tips: ['数据驱动', '用户反馈', '成本控制'], icon: '📈' },
-      { step: 6, title: '规模化', desc: '验证商业模式后，考虑规模化扩张', tips: ['复制成功模式', '拓展市场', '融资'], icon: '🌟' }
+  innovation: {
+    title: '大学生创新创业',
+    description: '国家大力支持大学生创新创业，提供丰富的政策和资源支持。',
+    policies: [
+      { name: '互联网+大学生创新创业大赛', desc: '教育部主办，国内规格最高的创新创业大赛', url: 'https://cy.ncss.cn/', icon: '🏆' },
+      { name: '大学生创新创业训练计划', desc: '国家级大创项目，提供资金支持', url: 'https://cy.ncss.cn/', icon: '📋' },
+      { name: '大学生创业基金', desc: '各地政府设立的创业扶持基金', url: 'https://cy.ncss.cn/', icon: '💰' },
+      { name: '税收优惠政策', desc: '大学生创业可享受税收减免', url: 'https://www.chinatax.gov.cn/', icon: '📊' }
     ],
-    resources: [
-      { name: '大学生创业孵化器', desc: '学校提供的创业场地和指导', icon: '🏢' },
-      { name: '创业基金', desc: '政府和学校提供的创业资金支持', icon: '💰' },
-      { name: '创业导师', desc: '有经验的企业家或教授指导', icon: '👨‍🏫' },
-      { name: '创业课程', desc: '学校开设的创业相关课程', icon: '📚' },
-      { name: '创业大赛', desc: '互联网+、挑战杯等创业竞赛', icon: '🏆' },
-      { name: '校友网络', desc: '成功创业校友的资源和经验', icon: '🤝' }
+    platforms: [
+      { name: '全国大学生创新服务网', url: 'https://cy.ncss.cn/', desc: '教育部主管，提供创新创业一站式服务', icon: '🎓', featured: true },
+      { name: '中国创新创业大赛', url: 'https://www.ieec.org.cn/', desc: '科技部主办，聚焦科技型中小企业', icon: '🚀' },
+      { name: '大学生创业网', url: 'https://www.chuangye.com/', desc: '创业资讯与服务平台', icon: '📰' },
+      { name: '创业邦', url: 'https://www.cyzone.cn/', desc: '创业生态服务平台', icon: '🌐' },
+      { name: '36氪', url: 'https://36kr.com/', desc: '科技创投媒体', icon: '📡' },
+      { name: '虎嗅', url: 'https://www.huxiu.com/', desc: '科技产业媒体', icon: '🐯' }
     ],
-    risks: [
-      { risk: '市场需求不足', solution: '充分调研，小步快跑', level: '高' },
-      { risk: '团队分裂', solution: '明确股权，建立机制', level: '高' },
-      { risk: '资金链断裂', solution: '控制成本，及时融资', level: '中' },
-      { risk: '竞争加剧', solution: '差异化竞争，持续创新', level: '中' },
-      { risk: '技术风险', solution: '选择成熟技术，快速迭代', level: '低' }
+    successCases: [
+      { name: 'ofo小黄车', school: '北京大学', field: '共享单车', funding: '超10亿美元', story: '北大研究生戴威创立，从校园共享单车发展为全球知名出行品牌' },
+      { name: '饿了么', school: '上海交通大学', field: '外卖平台', funding: '被阿里收购', story: '交大学生张旭豪创立，从校园外卖发展为全国性外卖平台' },
+      { name: '拼多多', school: '浙江大学', field: '电商', funding: '已上市', story: '浙大校友黄峥创立，创新社交电商模式' },
+      { name: '哔哩哔哩', school: '上海交通大学', field: '视频平台', funding: '已上市', story: '交大校友徐逸创立，从二次元社区发展为综合视频平台' }
+    ],
+    tips: [
+      { title: '选题方向', content: '从校园痛点出发，解决真实需求', icon: '🎯' },
+      { title: '团队组建', content: '技术+运营+设计，分工明确', icon: '👥' },
+      { title: 'MVP验证', content: '最小可行产品，快速验证', icon: '⚡' },
+      { title: '参加大赛', content: '以赛促创，获取资源', icon: '🏆' },
+      { title: '寻求指导', content: '找导师、找校友、找投资人', icon: '👨‍🏫' },
+      { title: '持续迭代', content: '根据反馈不断优化', icon: '🔄' }
     ],
     insights: [
-      '先解决自己的痛点，再服务他人',
-      '小成本试错，快速验证',
+      '国家大力支持大学生创新创业',
+      '互联网+大赛是国内规格最高的双创赛事',
+      '创业要从真实需求出发，解决实际问题',
       '团队比想法更重要',
-      '现金流是生命线',
-      '保持学习，持续迭代'
-    ]
-  },
-
-  marketAnalysis: {
-    keyTrends: [
-      '线上线下融合加速',
-      '个性化服务需求增长',
-      '社交电商模式兴起',
-      '绿色消费理念普及',
-      '数据驱动运营',
-      'AI技术应用深化'
-    ],
-    opportunities: [
-      '校园服务聚合平台',
-      '学生创业孵化服务',
-      '校园新媒体运营',
-      '校园生活服务O2O',
-      '校园数据服务',
-      '校园金融科技'
-    ],
-    challenges: [
-      '市场竞争激烈',
-      '用户获取成本上升',
-      '盈利模式单一',
-      '政策监管加强',
-      '技术迭代快速'
+      '参加大赛可获取资源和曝光'
     ]
   },
 
   links: [
-    { name: '工信部校园通信监管', url: 'https://www.miit.gov.cn/', icon: '🏛️' },
-    { name: '教育部高校服务', url: 'https://www.moe.gov.cn/', icon: '📚' },
+    { name: '全国大学生创新服务网', url: 'https://cy.ncss.cn/', icon: '🎓', featured: true },
+    { name: '工信部', url: 'https://www.miit.gov.cn/', icon: '🏛️' },
+    { name: '教育部', url: 'https://www.moe.gov.cn/', icon: '📚' },
     { name: '中国互联网信息中心', url: 'https://www.cnnic.net.cn/', icon: '🌐' },
-    { name: '大学生创业网', url: 'https://www.chuangye.com/', icon: '🚀' },
-    { name: '中国大学生创业基金', url: 'https://www.chuangye.org/', icon: '💰' }
+    { name: '中国创新创业大赛', url: 'https://www.ieec.org.cn/', icon: '🚀' },
+    { name: '国家税务总局', url: 'https://www.chinatax.gov.cn/', icon: '📊' }
   ]
 }
