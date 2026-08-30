@@ -99,12 +99,40 @@
 
 ## 🔧 一键换校
 
-```bash
-# 交互式输入
-python customize.py
+### 方式一：使用.exe可执行文件（推荐）
 
-# 从配置文件导入
-python customize.py --config templates/pku.json
+双击运行 `dist/NCSS-Nav换校工具.exe`，无需安装Python环境。
+
+**功能特性：**
+- 🎨 TUI交互界面（Rich库美化）
+- 📊 Excel模板导入配置
+- 👀 配置预览确认
+- 🎯 9套预设主题 + 自定义主题
+
+### 方式二：Python脚本
+
+```bash
+# 交互式TUI界面
+python customize_tui.py
+
+# 从Excel导入
+python customize_tui.py --excel templates/换校模板.xlsx
+
+# 从JSON配置导入
+python customize_tui.py --config templates/pku.json
+
+# 生成Excel模板
+python customize_tui.py --template
+```
+
+### 方式三：生成exe文件
+
+```bash
+# 安装依赖
+pip install rich openpyxl pyinstaller
+
+# 执行打包
+pyinstaller --onefile --name "NCSS-Nav换校工具" --console --clean --exclude-module PyQt5 --exclude-module PySide6 customize_tui.py
 ```
 
 ## 🛠️ 技术栈
