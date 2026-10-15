@@ -2,7 +2,7 @@
 
 > **🌐 可定制的校园服务聚合平台**
 >
-> **🏷️ 当前版本：v1.3.0**
+> **🏷️ 当前版本：v1.4.0**（生活费预算引擎：新增 `src/utils/budgetEngine.js` 稳健统计内核——稳健月均 / 剔除进行中当月 + 跑量外推 / 加权分类占比 / 样本置信度 / 趋势预测 / 订阅体检 / 占比一键配平；账单导入升级为三仓统一版并新增银行通用流水与中行 PDF 解析）
 >
 > **🔧 GitHub Actions：[![deploy](https://github.com/icyteacn/FJNU-Nav/actions/workflows/deploy.yml/badge.svg)](https://github.com/icyteacn/FJNU-Nav/actions/workflows/deploy.yml)**
 

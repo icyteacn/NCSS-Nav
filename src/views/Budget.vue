@@ -765,7 +765,7 @@ const monthLabel = computed(() => {
     <p class="muted" style="font-size:12px;margin-bottom:10px;">
       直接选择从微信 / 支付宝下载的账单文件即可自动识别：微信「支付 → 钱包 → 账单 → 常见问题 → 下载账单 → 用于个人对账」或支付宝「我的 → 账单 → 右上角 ⋯ → 开具交易流水证明 / 导出」，下载的 CSV 或 Excel(xlsx) 都能识别。金额按「收/支」自动记入，支出按交易分类与商品名自动归类。
     </p>
-    <input id="csv-file" type="file" accept=".csv,.xlsx,text/csv" style="display:none;" @change="billImport($event.target.files[0])" />
+    <input id="csv-file" type="file" accept=".csv,.xlsx,.xls,.pdf,text/csv" style="display:none;" @change="billImport($event.target.files[0])" />
     <label for="csv-file" class="btn ghost" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;">📄 选择账单文件（CSV / Excel）</label>
     <div class="clean-toggle">
       <input id="clean-switch" type="checkbox" v-model="cleanMode" />
