@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { foods, halls } from '../data/foods'
 import CountUp from '../components/CountUp.vue'
+import { setJson, safeSet } from '../utils/safeStorage.js'
 
 const emit = defineEmits(['back'])
 
@@ -103,13 +104,13 @@ function spin() {
 function pushHistory(hall, dish, t) {
   history.value.unshift({ at: new Date().toLocaleTimeString(), hall: hall || '—', dish, tier: t })
   history.value = history.value.slice(0, 10)
-  localStorage.setItem('fjnu_wheel_history', JSON.stringify(history.value))
+  setJson('fjnu_wheel_history', history.value)
   sessionStorage.setItem('fjnu_wheel_spins', String(spins.value))
 }
 
 function addBalance(n) {
   balance.value += n
-  localStorage.setItem('fjnu_wheel_balance', String(balance.value))
+  safeSet('fjnu_wheel_balance', String(balance.value))
 }
 
 function pickTier(k) {

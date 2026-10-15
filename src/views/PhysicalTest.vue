@@ -1,6 +1,7 @@
 <script setup>
 import { ref, reactive, computed, watch } from 'vue'
 import { standards, itemWeights, itemLabels, bmiScore, itemScore, gradeOf } from '../data/physical'
+import { setJson } from '../utils/safeStorage.js'
 
 const emit = defineEmits(['back'])
 
@@ -26,7 +27,7 @@ if (saved) {
 
 watch(
   [gender, years],
-  () => localStorage.setItem('fjnu_physical_test', JSON.stringify({ gender: gender.value, years })),
+  () => setJson('fjnu_physical_test', { gender: gender.value, years }),
   { deep: true }
 )
 

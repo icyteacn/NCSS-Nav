@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import CountUp from '../components/CountUp.vue'
+import { safeSet } from '../utils/safeStorage.js'
 
 const emit = defineEmits(['back'])
 
@@ -100,7 +101,7 @@ function checkWin() {
     done.value = true
     if (!best.value || moves.value < best.value) {
       best.value = moves.value
-      localStorage.setItem('fjnu_bm_best', String(best.value))
+      safeSet('fjnu_bm_best', String(best.value))
     }
   }
 }
