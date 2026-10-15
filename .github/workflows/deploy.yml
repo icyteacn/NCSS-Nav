@@ -24,6 +24,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # Pages 站点信息（deploy-pages 依赖；缺此步典型报错为
+      # "Get Pages site failed ... consider exploring the enablement parameter"）
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
