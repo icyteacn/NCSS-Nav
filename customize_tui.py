@@ -313,18 +313,18 @@ def preview_config(info):
         table.add_column("配置项", style="bold cyan", width=15)
         table.add_column("配置值", style="white")
         
-        table.add_row("学校全称", info.get('university', '-'))
-        table.add_row("学校简称", info.get('shortName', '-'))
-        table.add_row("品牌名", info.get('brand', '-'))
-        table.add_row("校训", info.get('motto', '-'))
-        table.add_row("教务处网址", info.get('jwUrl', '-'))
-        table.add_row("校区数量", info.get('campuses', '-'))
-        table.add_row("学院数量", info.get('colleges', '-'))
-        table.add_row("专业数量", info.get('majors', '-'))
+        table.add_row("学校全称", str(info.get('university', '-')))
+        table.add_row("学校简称", str(info.get('shortName', '-')))
+        table.add_row("品牌名", str(info.get('brand', '-')))
+        table.add_row("校训", str(info.get('motto', '-')))
+        table.add_row("教务处网址", str(info.get('jwUrl', '-')))
+        table.add_row("校区数量", str(info.get('campuses', '-')))
+        table.add_row("学院数量", str(info.get('colleges', '-')))
+        table.add_row("专业数量", str(info.get('majors', '-')))
         
         theme = info.get('theme', {})
-        table.add_row("主题", theme.get('name', '-'))
-        table.add_row("主色调", theme.get('primary', '-'))
+        table.add_row("主题", str(theme.get('name', '-')))
+        table.add_row("主色调", str(theme.get('primary', '-')))
         
         console.print(table)
     else:
